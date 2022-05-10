@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,14 +24,12 @@ public class CustomAdapterNotes extends RecyclerView.Adapter<CustomAdapterNotes.
 
     private Context context;
     private Activity activity;
-    private ArrayList note_id, note_title, note_detail;
+    private ArrayList<Note> notes;
 
-    CustomAdapterNotes(Activity activity, Context context, ArrayList note_id, ArrayList note_title, ArrayList note_detail){
+    CustomAdapterNotes(Activity activity, Context context, ArrayList<Note> notes) {
         this.activity = activity;
         this.context = context;
-        this.note_id = note_id;
-        this.note_title = note_title;
-        this.note_detail = note_detail;
+        this.notes = notes;
     }
 
     @NonNull
@@ -44,7 +43,7 @@ public class CustomAdapterNotes extends RecyclerView.Adapter<CustomAdapterNotes.
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, @SuppressLint("RecyclerView") final int position) {
-        holder.note_title_txt.setText(String.valueOf(note_title.get(position)));
+        holder.note_title_txt.setText(String.valueOf(notes.get(position).getTitle()));
 
         //Recyclerview onClickListener
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
@@ -64,7 +63,7 @@ public class CustomAdapterNotes extends RecyclerView.Adapter<CustomAdapterNotes.
 
     @Override
     public int getItemCount() {
-        return note_id.size();
+        return notes.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
@@ -76,6 +75,7 @@ public class CustomAdapterNotes extends RecyclerView.Adapter<CustomAdapterNotes.
             super(itemView);
             note_title_txt = itemView.findViewById(R.id.note_title_txt);
             mainLayout = itemView.findViewById(R.id.mainLayout);
+
             //Animate Recyclerview
             Animation translate_anim = AnimationUtils.loadAnimation(context, R.anim.translate_anim);
             mainLayout.setAnimation(translate_anim);

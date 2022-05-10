@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     TextView no_data;
 
     MyDatabaseHelper myDB;
-    ArrayList<String> note_id, note_title, note_detail;
+    ArrayList<Note> notes;
     CustomAdapterNotes customAdapterNotes;
 
     @Override
@@ -50,14 +50,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         myDB = new MyDatabaseHelper(MainActivity.this);
-        note_id = new ArrayList<>();
-        note_title = new ArrayList<>();
-        note_detail = new ArrayList<>();
+        notes = new ArrayList<Note>();
 
         storeDataInArrays();
 
-        customAdapterNotes = new CustomAdapterNotes(MainActivity.this,this, note_id, note_title,
-                note_detail);
+        customAdapterNotes = new CustomAdapterNotes(MainActivity.this,this, notes);
         recyclerView.setAdapter(customAdapterNotes);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
@@ -78,9 +75,8 @@ public class MainActivity extends AppCompatActivity {
             no_data.setVisibility(View.VISIBLE);
         }else{
             while (cursor.moveToNext()){
-                note_id.add(cursor.getString(0));
-                note_title.add(cursor.getString(1));
-                note_detail.add(cursor.getString(2));
+                Note note = new Note(cursor.getString(0), cursor.getString(1), cursor.getString(2));
+                notes.add(note);
             }
             empty_imageview.setVisibility(View.GONE);
             no_data.setVisibility(View.GONE);
