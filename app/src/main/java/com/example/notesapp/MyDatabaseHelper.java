@@ -30,7 +30,7 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
         String query = "CREATE TABLE " + TABLE_NAME +
                         " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         COLUMN_TITLE + " TEXT, " +
-                COLUMN_DETAIL + " INTEGER);";
+                COLUMN_DETAIL + " TEXT);";
         db.execSQL(query);
     }
     @Override
@@ -39,7 +39,7 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    void addBook(String title, String author, int detail){
+    void addBook(String title, String detail){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
@@ -64,7 +64,7 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    void updateData(String row_id, String title, String author, String detail){
+    void updateDataNotes(String row_id, String title, String detail){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_TITLE, title);

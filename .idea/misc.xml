@@ -5,7 +5,10 @@
       <map>
         <entry key="app/src/main/res/drawable/ic_add.xml" value="0.1945" />
         <entry key="app/src/main/res/drawable/ic_delete.xml" value="0.1945" />
+        <entry key="app/src/main/res/layout/activity_add_note.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.17028985507246377" />
+        <entry key="app/src/main/res/layout/note_row.xml" value="0.1" />
+        <entry key="app/src/main/res/menu/my_menu.xml" value="0.19375" />
       </map>
     </option>
   </component>
